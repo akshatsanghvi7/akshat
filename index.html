@@ -891,9 +891,9 @@
   <section id="blog">
     <div class="container">
       <div class="blog-content">
-        <h2 class="section-title">Blog</h2>
+        <h2 class="section-title">Blog (under development)</h2>
         <p class="section-description">
-          I write about technology, design, and other topics that interest me. Check out my latest articles.
+          I write about Finance, technology, design, and other topics that interest me. Check out my latest articles.
         </p>
         <div class="button-container">
           <a href="#" class="btn btn-dark">Read My Blog</a>
@@ -911,25 +911,26 @@
           You can also drop me a message via email or connect on LinkedIn, and let’s start a conversation that could spark the next big thing.
         </p>
         
-        <form class="contact-form">
+        <form class="contact-form" id="contact-form">
           <div class="form-row">
-            <input type="text" placeholder="Enter your Name" class="form-input">
-            <input type="email" placeholder="Enter your Email" class="form-input">
+            <input type="text" name="name" placeholder="Enter your Name" class="form-input" required>
+            <input type="email" name="email" placeholder="Enter your Email" class="form-input" required>
           </div>
-          <textarea placeholder="Enter Your Message" class="form-textarea"></textarea>
+          <textarea name="message" placeholder="Enter Your Message" class="form-textarea" required></textarea>
           <button type="submit" class="submit-btn">
             Submit Now <span class="arrow-icon">→</span>
           </button>
         </form>
-        
+
         <div class="contact-footer">
           <div class="contact-author">
             <img src="Akshat1.png" alt="Akshat Sanghvi" class="author-img">
             <span class="author-name">Akshat Sanghvi</span>
           </div>
           <div class="social-icons">
-            <a href="#" class="social-icon">in</a>
-            <a href="#" class="social-icon">✉</a>
+            <a href="https://www.linkedin.com/in/akshat-sanghvi-ak077" target="_blank" class= "social-icon">in</a>
+            <a href="mailto:akshatsanghvi077@gmail.com?subject=Hello" target="_blank" class="social-icon">✉</a>
+
           </div>
         </div>
       </div>
@@ -1139,5 +1140,65 @@
       }
     });
   </script>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw60fzY7N2yfw_cVO88GcKhryAM3JgvPd53YNRGHeaUqyPcK9SIA-EOWGWWD7RGnluEEw/exec'; // You'll get this URL in Step 3
+  const form = document.getElementById('contact-form');
+  
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    // Show sending message
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+    
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        console.log('Success!', response);
+        form.reset();
+        
+        // Show success message
+        submitBtn.innerHTML = 'Message Sent!';
+        setTimeout(() => {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        }, 3000);
+        
+        // Optional: Create and display success message
+        const successMsg = document.createElement('div');
+        successMsg.className = 'success-message';
+        successMsg.textContent = 'Thank you for your message. We will get back to you soon!';
+        successMsg.style.color = '#23d160';
+        successMsg.style.marginTop = '10px';
+        successMsg.style.textAlign = 'center';
+        form.appendChild(successMsg);
+        
+        setTimeout(() => {
+          successMsg.remove();
+        }, 5000);
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        
+        // Show error message
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Optional: Create and display error message
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'Something went wrong. Please try again later.';
+        errorMsg.style.color = '#ff3860';
+        errorMsg.style.marginTop = '10px';
+        errorMsg.style.textAlign = 'center';
+        form.appendChild(errorMsg);
+        
+        setTimeout(() => {
+          errorMsg.remove();
+        }, 5000);
+      });
+  });
+</script>
 </body>
 </html>
