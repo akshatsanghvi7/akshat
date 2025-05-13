@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akshat Sanghvi - Projects</title>
+  <title>Akshat Sanghvi - Project Name</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <style>
     * {
@@ -14,7 +14,6 @@
       scroll-behavior: smooth;
       transition: background-color 0.3s, color 0.3s;
     }
-    
     :root {
       --background-color: #fff;
       --text-color: #000;
@@ -32,7 +31,6 @@
       --footer-color: #666;
       --shadow-color: rgba(0, 0, 0, 0.05);
     }
-    
     .dark-theme {
       --background-color: #121212;
       --text-color: #f5f5f7;
@@ -50,13 +48,12 @@
       --footer-color: #999;
       --shadow-color: rgba(0, 0, 0, 0.2);
     }
-    
     body {
       background-color: var(--background-color);
       color: var(--text-color);
       overflow-x: hidden;
+      line-height: 1.6;
     }
-    
     header {
       position: fixed;
       top: 0;
@@ -68,278 +65,72 @@
       z-index: 100;
       box-shadow: 0 2px 10px var(--shadow-color);
     }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 44px;
-    }
-    
-    .logo {
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--text-color);
-      text-decoration: none;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    
-    .nav-links a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 400;
-      transition: opacity 0.3s ease;
-    }
-    
-    .nav-links a:hover {
-      opacity: 0.7;
-    }
-    
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-      color: var(--text-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      padding: 0;
-      margin-left: 20px;
-      transition: transform 0.3s ease;
-    }
-    
-    .theme-toggle:hover {
-      transform: rotate(15deg);
-    }
-    
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Project Gallery Styles */
-    .projects-container {
-      padding-top: 80px;
-      min-height: 100vh;
-      background-color: var(--section-bg-primary);
-    }
-    
-    .projects-header {
-      text-align: center;
-      padding: 40px 0;
-    }
-    
-    .section-title {
-      font-size: 40px;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-    
-    .section-description {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--text-color);
-      opacity: 0.9;
-      margin-bottom: 30px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 30px;
-      padding: 0 20px 60px;
-    }
-    
-    .project-card {
+    .project-image { width: 100%; height: auto; border-radius: 12px; }
+    .tableauPlaceholder {
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px var(--shadow-color);
-      height: 250px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px var(--shadow-color);
-    }
-    
-    .project-img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: filter 0.3s ease;
+      padding-bottom: 75%; /* 4:3 aspect ratio */
     }
-    
-    .project-overlay {
-      position: absolute;
-      bottom: 0;
+    .tableauPlaceholder object {
+      position: absolute !important;
+      top: 0;
       left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.2) 100%);
-      color: white;
-      padding: 20px;
-      transform: translateY(70%);
-      transition: transform 0.3s ease;
+      width: 100% !important;
+      height: 100% !important;
     }
-    
-    .project-card:hover .project-overlay {
-      transform: translateY(0);
-    }
-    
-    .project-card:hover .project-img {
-      filter: brightness(0.7);
-    }
-    
-    .project-overlay h3 {
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-    
-    .project-overlay p {
-      font-size: 14px;
-      margin-bottom: 15px;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translateY(20px);
-    }
-    
-    .project-card:hover .project-overlay p {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    
-    .project-tag {
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-    }
-    
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
-      border: 1px solid var(--text-color);
-      transition: all 0.3s ease;
-      min-width: 150px;
-      text-align: center;
-    }
-    
-    .btn-dark {
-      background-color: var(--btn-dark-bg);
-      color: var(--btn-dark-color);
-    }
-    
-    .btn-light {
-      background-color: var(--btn-light-bg);
-      color: var(--btn-light-color);
-    }
-    
-    .btn:hover {
-      opacity: 0.8;
-      transform: translateY(-2px);
-    }
-    
-    /* Back to Home Button */
-    .back-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background-color: var(--btn-dark-bg);
-      color: var(--btn-dark-color);
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 500;
-      margin: 40px 0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .back-home:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px var(--shadow-color);
-    }
-    
-    footer {
-      background-color: var(--footer-bg);
-      padding: 30px 0;
-      font-size: 14px;
-      color: var(--footer-color);
-    }
-    
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-    
-    .footer-links a {
-      color: var(--footer-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: var(--text-color);
-    }
-    
-    .copyright {
+    .project-actions {
       margin-top: 20px;
-      text-align: center;
-      width: 100%;
+      display: flex;
+      gap: 10px;
     }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 44px; }
+    .logo { font-weight: 600; font-size: 20px; color: var(--text-color); text-decoration: none; }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-color); text-decoration: none; font-size: 16px; font-weight: 400; transition: opacity 0.3s ease; }
+    .nav-links a:hover { opacity: 0.7; }
+    .theme-toggle { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--text-color); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; margin-left: 20px; transition: transform 0.3s ease; }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-color); }
+    .project-details-container { padding-top: 80px; min-height: 100vh; background-color: var(--section-bg-primary); }
+    .project-header { text-align: center; padding: 40px 0; }
+    .project-title { font-size: 40px; font-weight: 600; margin-bottom: 20px; }
+    .project-description { font-size: 18px; max-width: 800px; margin: 0 auto 30px; opacity: 0.9; }
+    .project-details { max-width: 800px; margin: 0 auto; background-color: var(--card-bg); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px var(--shadow-color); }
+    .project-details h2 { font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    .project-details p, .project-details ul { margin-bottom: 20px; }
+    .project-details ul ul { margin-top: 10px; }
+    .btn { display: inline-block; padding: 12px 24px; text-decoration: none; font-size: 16px; font-weight: 500; border: 1px solid var(--text-color); transition: all 0.3s ease; min-width: 150px; text-align: center; }
+    .btn-dark { background-color: var(--btn-dark-bg); color: var(--btn-dark-color); }
+    .btn-light { background-color: var(--btn-light-bg); color: var(--btn-light-color); }
+    .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+    .back-to-projects { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background-color: var(--btn-dark-bg); color: var(--btn-dark-color); text-decoration: none; border-radius: 30px; font-weight: 500; margin: 4px 0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .back-to-projects:hover { transform: translateY(-3px); box-shadow: 0 10px 20px var(--shadow-color); }
+    footer { background-color: var(--footer-bg); padding: 30px 0; font-size: 14px; color: var(--footer-color); }
+    .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--footer-color); text-decoration: none; transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--text-color); }
+    .copyright { margin-top: 20px; text-align: center; width: 100%; }
     
+    /* Mobile menu styling */
     .mobile-nav {
       position: fixed;
       top: 44px;
       left: 0;
-      right: 0;
+      width: 100%;
       background-color: var(--header-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      align-items: center;
+      z-index: 99;
       transform: translateY(-100%);
       transition: transform 0.3s ease;
-      z-index: 99;
+      box-shadow: 0 2px 10px var(--shadow-color);
+      padding: 20px 0;
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
     }
     
     .mobile-nav.open {
@@ -348,6 +139,8 @@
     
     .mobile-nav a {
       padding: 12px 0;
+      width: 100%;
+      text-align: center;
       border-bottom: 1px solid var(--border-color);
       font-size: 18px;
       text-decoration: none;
@@ -355,9 +148,11 @@
     }
     
     .mobile-theme-toggle {
+      width: 100%;
       padding: 12px 0;
       border-bottom: 1px solid var(--border-color);
-      display: none;
+      display: flex;
+      justify-content: center;
     }
     
     .mobile-theme-toggle button {
@@ -391,7 +186,7 @@
       }
       
       .mobile-theme-toggle {
-        display: block;
+        display: flex;
       }
       
       .projects-grid {
@@ -413,16 +208,14 @@
   <header>
     <div class="container">
       <nav>
-        <a href="index.html" class="logo">𝐀𝐊𝐒𝐇𝐀𝐓 𝐒𝐀𝐍𝐆𝐇𝐕𝐈</a>
+        <a href="../../index.html" class="logo">𝐀𝐊𝐒𝐇𝐀𝐓 𝐒𝐀𝐍𝐆𝐇𝐕𝐈</a>
         <div class="nav-links">
-          <a href="index.html#about">About</a>
-          <a href="index.html#projects">Projects</a>
-          <a href="index.html#certifications">Certifications</a>
-          <a href="index.html#blog">Blog</a>
-          <a href="index.html#contact">Contact</a>
-          <button id="theme-toggle" class="theme-toggle">
-            <i class="fas fa-sun"></i>
-          </button>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#projects">Projects</a>
+          <a href="../../index.html#certifications">Certifications</a>
+          <a href="../../index.html#blog">Blog</a>
+          <a href="../../index.html#contact">Contact</a>
+          <button id="theme-toggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
         </div>
         <button class="mobile-menu-btn">☰</button>
       </nav>
@@ -430,80 +223,100 @@
   </header>
   
   <div class="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#projects">Projects</a>
-    <a href="index.html#certifications">Certifications</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#contact">Contact</a>
-    <div class="mobile-theme-toggle">
-      <button id="mobile-theme-toggle">
-        <i class="fas fa-sun"></i>
-        <span>Toggle Theme</span>
-      </button>
-    </div>
+    <a href="../../index.html">Home</a>
+    <a href="../../index.html#about">About</a>
+    <a href="../../index.html#projects">Projects</a>
+    <a href="../../index.html#certifications">Certifications</a>
+    <a href="../../index.html#blog">Blog</a>
+    <a href="../../index.html#contact">Contact</a>
+    <div class="mobile-theme-toggle"><button id="mobile-theme-toggle"><i class="fas fa-sun"></i><span>Toggle Theme</span></button></div>
   </div>
   
-  <div class="projects-container">
+  <div class="project-details-container">
     <div class="container">
-      <div class="projects-header">
-        <h1 class="section-title">My Projects</h1>
-        <p class="section-description">
-          Explore my portfolio of projects that showcase my skills in finance, data science, and programming. 
-          Each project represents unique challenges I've tackled and solutions I've developed.
-        </p>
-        <a href="index.html" class="back-home">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
+      <div class="project-header">
+        <h1 class="project-title">Daikibo Data Analytics Internship</h1>
+        <p class="project-description">Data Analytics Virtual Internship: Task 1 solved in Tableau, Task 2 solved in Excel.</p>
+        <a href="../../projects.html" class="back-to-projects"><i class="fas fa-arrow-left"></i> Back to Projects</a>
       </div>
       
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card" onclick="window.location.href='projects/Deloitte (DA)/proj.html'">Go to projects
-          <img src="projects/Deloitte (DA)/Dashboard 1.png" alt="Deloitte Data Analytics" class="project-img">
-          <div class="project-overlay">
-            <h3>Deloitte Data Analytics</h3>
-            <p>Completed a Deloitte job simulation involving data analysis and forensic technology, Created a data dashboard using Tableau and Used Excel to classify data and draw business conclusions.</p>
-            <div class="project-tags">
-              <span class="project-tag">Tableau</span>
-              <span class="project-tag">Data presentation</span>
-              <span class="project-tag">Data analysis</span>
-            </div>
-          </div>
-        </div>
+      <div class="project-details">
+        <img src="Dashboard 1.png" alt="Project Image" class="project-image">
         
-        <!-- Project 2 -->
-        <div class="project-card" onclick="window.location.href='project2.html'">
-          <img src="/api/placeholder/400/320" alt="Anti-Money Laundering Framework" class="project-img">
-          <div class="project-overlay">
-            <h3>Anti-Money Laundering Framework</h3>
-            <p>An animated short film exploring corporate money laundering techniques and comprehensive anti-money-laundering frameworks for financial institutions.</p>
-            <div class="project-tags">
-              <span class="project-tag">Finance</span>
-              <span class="project-tag">Animation</span>
-              <span class="project-tag">Compliance</span>
-            </div>
-          </div>
-        </div>
+        <h2>Project Overview</h2>
+        <p>This internship involved two tasks for Daikibo Manufacturing:</p>
+        <ul>
+          <li><strong>Task 1 (Tableau):</strong> Analyzed May 2021 telemetry data from four factories (Tokyo, Osaka, Berlin, Shenzhen) to identify the factory with the highest failure rate and the most failure-prone machine types, delivering interactive Tableau dashboards.</li>
+          <li><strong>Task 2 (Excel):</strong> Classified compensation equality scores into Fair (-10 to +10), Unfair (<-10 or >10), and Highly Discriminative (<-20 or >20) categories using Excel formulas.</li>
+        </ul>
         
-        <!-- Add more project cards as needed -->
+        <h2>Key Features</h2>
+        <ul>
+          <li><strong>Cross-Location Failure Analysis:</strong> Unified data from four global factories.</li>
+          <li><strong>High-Frequency Telemetry Monitoring:</strong> Detailed 10-minute interval insights.</li>
+          <li><strong>Machine-Type Breakdown:</strong> Pinpointed top failure contributors.</li>
+          <li><strong>Compensation Equality Audit:</strong> Evaluated pay fairness across roles.</li>
+          <li><strong>Automated Classification:</strong> Rule-based Excel logic for transparency.</li>
+          <li><strong>Interactive Dashboards:</strong> Real-time exploration in Tableau.</li>
+        </ul>
+        
+        <h2>Challenges & Solutions</h2>
+        <ul>
+          <li><strong>Data Complexity:</strong> Flattened and preprocessed JSON for Tableau ingestion.</li>
+          <li><strong>Volume Handling:</strong> Leveraged Tableau filters and time-series charts to manage high-frequency data.</li>
+          <li><strong>Threshold Definition:</strong> Implemented nested IF formulas in Excel for clear classification.</li>
+        </ul>
+        
+        <h2>Dashboard Preview</h2>
+        <!-- Responsive Embedded Tableau Code -->
+        <div class='tableauPlaceholder' id='viz1746988121652'>
+          <noscript>
+            <a href='#'>
+              <img alt='Dashboard 1' src='https://public.tableau.com/static/images/Bo/Book1_17469880254020/Dashboard1/1_rss.png' style='border: none' />
+            </a>
+          </noscript>
+          <object class='tableauViz' style='position:absolute;width:100%;height:100%;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='Book1_17469880254020/Dashboard1' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Bo/Book1_17469880254020/Dashboard1/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-GB' />
+          </object>
+        </div>
+        <script type='text/javascript'>
+          var divElement = document.getElementById('viz1746988121652');
+          var scriptElement = document.createElement('script');
+          scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+          divElement.appendChild(scriptElement);
+        </script>
+        <div class="project-actions">
+          <a href="https://public.tableau.com/views/Book1_17469880254020/Dashboard1" class="btn btn-dark" target="_blank"><i class="fas fa-external-link-alt"></i> View Tableau Dashboard</a>
+          <a href="Task2.xlsx" class="btn btn-light" download="Task2.xlsx" target="_blank"><i class="fas fa-file-excel"></i> Download Updated Excel</a>
+        </div>
       </div>
     </div>
   </div>
-  
-  <footer>
+<footer>
     <div class="container">
       <div class="footer-container">
         <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#projects">Projects</a>
-          <a href="index.html#blog">Blog</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#projects">Projects</a>
+          <a href="../../index.html#blog">Blog</a>
+          <a href="../../index.html#contact">Contact</a>
         </div>
         <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
+          <a href="../../privacy-policy.html">Privacy Policy</a>
+          <a href="../../terms-of-use.html">Terms of Use</a>
         </div>
         <p class="copyright">© 2025 Akshat Sanghvi. All rights reserved.</p>
       </div>
