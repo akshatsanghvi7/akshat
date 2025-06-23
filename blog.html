@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshat Sanghvi - Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        :root {
+            --background-color: #fff;
+            --text-color: #000;
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --section-bg-primary: #fafafa;
+            --section-bg-secondary: #f5f5f7;
+            --card-bg: white;
+            --input-bg: #f0f0f0;
+            --border-color: #eee;
+            --btn-dark-bg: #1a1a1a;
+            --btn-dark-color: white;
+            --btn-light-bg: transparent;
+            --btn-light-color: #000;
+            --footer-bg: #f5f5f7;
+            --footer-color: #666;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-theme {
+            --background-color: #121212;
+            --text-color: #f5f5f7;
+            --header-bg: rgba(18, 18, 18, 0.8);
+            --section-bg-primary: #1e1e1e;
+            --section-bg-secondary: #262626;
+            --card-bg: #333;
+            --input-bg: #444;
+            --border-color: #444;
+            --btn-dark-bg: #f5f5f7;
+            --btn-dark-color: #121212;
+            --btn-light-bg: transparent;
+            --btn-light-color: #f5f5f7;
+            --footer-bg: #1e1e1e;
+            --footer-color: #999;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 44px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            margin-left: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Blog Section Styles */
+        .blog-container {
+            padding-top: 80px;
+            min-height: 100vh;
+            background-color: var(--section-bg-primary);
+        }
+
+        .blog-header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: var(--btn-dark-bg);
+            color: var(--btn-dark-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            margin: 40px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .blog-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 20px 60px;
+        }
+
+        .blog-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-color);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recent-blogs .section-icon {
+            background-color: #007AFF;
+            color: white;
+        }
+
+        .research .section-icon {
+            background-color: #34C759;
+            color: white;
+        }
+
+        .section-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .blog-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: var(--section-bg-primary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .blog-item:hover {
+            background-color: var(--section-bg-secondary);
+            transform: translateX(5px);
+            border-color: var(--border-color);
+        }
+
+        .blog-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color);
+            line-height: 1.4;
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .view-btn {
+            background-color: var(--btn-dark-bg);
+            color: var(--btn-dark-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 60px;
+        }
+
+        .view-btn:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 44px;
+            left: 0;
+            right: 0;
+            background-color: var(--header-bg);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            z-index: 99;
+        }
+
+        .mobile-nav.open {
+            transform: translateY(0);
+        }
+
+        .mobile-nav a {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 18px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .mobile-theme-toggle {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .mobile-theme-toggle button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 30px 0;
+            font-size: 14px;
+            color: var(--footer-color);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--footer-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-color);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .blog-sections {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-theme-toggle {
+                display: block;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .blog-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .blog-title {
+                margin-right: 0;
+            }
+
+            .view-btn {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">𝐀𝐊𝐒𝐇𝐀𝐓 𝐒𝐀𝐍𝐆𝐇𝐕𝐈</a>
+                <div class="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#certifications">Certifications</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#certifications">Certifications</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+        <div class="mobile-theme-toggle">
+            <button id="mobile-theme-toggle">
+                <i class="fas fa-sun"></i>
+                <span>Toggle Theme</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="blog-container">
+        <div class="container">
+            <div class="blog-header">
+                <h1 class="section-title">Latest Insights</h1>
+                <p class="section-description">
+                    Discover my latest thoughts, research findings, and in-depth analysis on cutting-edge topics in finance, technology, and data science.
+                </p>
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+
+            <div class="blog-sections">
+                <!-- Recent Blogs Section -->
+                <div class="blog-section recent-blogs">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h2 class="section-name">Recent Blogs (Under development) </h2>
+                    </div>
+                    <div class="blog-list">
+                        <div class="blog-item">
+                            <div class="blog-title">The Future of Financial Technology in 2025</div>
+                            <button class="view-btn" onclick="viewBlog('recent', 1)">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Data-Driven Investment Strategies</div>
+                            <button class="view-btn" onclick="viewBlog('recent', 2)">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Understanding Market Volatility Through Analytics</div>
+                            <button class="view-btn" onclick="viewBlog('recent', 3)">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Python for Financial Analysis: A Complete Guide</div>
+                            <button class="view-btn" onclick="viewBlog('recent', 4)">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Building Robust Trading Algorithms</div>
+                            <button class="view-btn" onclick="viewBlog('recent', 5)">View</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Section -->
+                <div class="blog-section research">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h2 class="section-name">Research</h2>
+                    </div>
+                    <div class="blog-list">
+                        <div class="blog-item">
+                            <div class="blog-title">Globe Civil Projects Limited: A High-Potential EPC Play with Cautionary Tailwinds </div>
+                            <button class="view-btn" onclick="window.open('blogs/Globe civil.pdf', '_blank')">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">HDB Financial IPO</div>
+                            <button class="view-btn" onclick="window.open('blogs/Arisinfra.pdf', '_blank')">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Sambhav Steel Tubes IPO</div>
+                            <button class="view-btn" onclick="window.open('blogs/Arisinfra.pdf', '_blank')">View</button>
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Arisinfra IPO: Bridging India's Construction Gaps with a Digital Supply Chain</div>
+                            <button class="view-btn" onclick="window.open('blogs/Arisinfra.pdf', '_blank')">View</button>                            
+                        </div>
+                        <div class="blog-item">
+                            <div class="blog-title">Oswal Pumps: A detailed IPO Breakdown</div>
+                            <button class="view-btn" onclick="window.open('blogs/Arisinfra.pdf', '_blank')">View</button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+                <p class="copyright">© 2025 Akshat Sanghvi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference or use default
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            updateThemeIcons(true);
+        }
+
+        // Toggle theme function
+        function toggleTheme() {
+            body.classList.toggle('dark-theme');
+            const isDark = body.classList.contains('dark-theme');
+
+            // Save theme preference
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            // Update icons
+            updateThemeIcons(isDark);
+        }
+
+        // Update theme icons for both desktop and mobile
+        function updateThemeIcons(isDark) {
+            const desktopIcon = themeToggle.querySelector('i');
+            const mobileIcon = mobileThemeToggle.querySelector('i');
+
+            if (isDark) {
+                desktopIcon.className = 'fas fa-moon';
+                mobileIcon.className = 'fas fa-moon';
+                mobileThemeToggle.querySelector('span').textContent = 'Dark Mode';
+            } else {
+                desktopIcon.className = 'fas fa-sun';
+                mobileIcon.className = 'fas fa-sun';
+                mobileThemeToggle.querySelector('span').textContent = 'Light Mode';
+            }
+        }
+
+        // Event listeners for theme toggle buttons
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('open');
+            mobileMenuBtn.textContent = mobileNav.classList.contains('open') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('open');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Close mobile menu when scrolling
+        window.addEventListener('scroll', function() {
+            if (mobileNav.classList.contains('open')) {
+                mobileNav.classList.remove('open');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+
+        // Blog view function
+        function viewBlog(section, id) {
+            // Add a subtle click animation
+            event.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                event.target.style.transform = 'translateY(-2px)';
+            }, 100);
+
+            // Simulate blog navigation
+            console.log(`Navigating to ${section} blog ${id}`);
+            alert(`Opening ${section} blog ${id}. In a real implementation, this would navigate to the blog post.`);
+        }
+    </script>
+</body>
+</html>
