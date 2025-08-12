@@ -1221,5 +1221,11 @@ I’m driven by one goal: to shape the future of finance through curiosity, tech
       });
   });
 </script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+  const socket = io('https://akshatsanghvi7.github.io/pageanalytics/');
+  socket.emit('visit', { page: window.location.pathname });
+</script>
 </body>
 </html>
+
